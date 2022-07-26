@@ -1,7 +1,28 @@
 #include "md5.h"
 
+md5::md5() {}
+
+md5::md5(const string& msg) {
+    this->msg = msg;
+    reg[0] = 0x67452301;
+    reg[1] = 0xefcdab89;
+    reg[2] = 0x98badcfe;
+    reg[3] = 0x10325476;
+}
+
+md5::~md5() {}
+
 string md5::to_string() {
     return md5::cypher;
+}
+
+void md5::setMsg(const string& msg) {
+    this->msg = msg;
+    reg[0] = 0x67452301;
+    reg[1] = 0xefcdab89;
+    reg[2] = 0x98badcfe;
+    reg[3] = 0x10325476;
+    this->cypher = "";
 }
 
 void md5::encypher() {
@@ -111,11 +132,4 @@ void md5::transform(const bit32 block[16]) {
     reg[1] += b;
     reg[2] += c;
     reg[3] += d;
-}
-
-int main(void) {
-    md5 test = md5("a");
-    test.encypher();
-    std::cout << test.to_string() << std::endl;
-    return 0;
 }

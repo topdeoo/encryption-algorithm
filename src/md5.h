@@ -67,22 +67,14 @@ private:
     string msg;
     bit32 reg[4];
 public:
+    md5();
     md5(const string& msg);
     ~md5();
     string to_string();
     void encypher();
+    void setMsg(const string& msg);
 private:
     void init(size_t len);
     void transform(const bit32 block[64]);
 };
-
-md5::md5(const string& msg) {
-    this->msg = msg;
-    reg[0] = 0x67452301;
-    reg[1] = 0xefcdab89;
-    reg[2] = 0x98badcfe;
-    reg[3] = 0x10325476;
-}
-
-md5::~md5() {}
 #endif
